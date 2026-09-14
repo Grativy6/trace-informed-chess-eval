@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.venv/
+logs/
+traces/
+upstream/beat-stockfish/
+.pytest_cache/
+.DS_Store
