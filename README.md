@@ -23,7 +23,17 @@ python3 scripts/mock_dry_run.py
 python3 scripts/lock_experiment.py --verify
 ```
 
-After installing the upstream runner dependencies and building its Docker image, one bounded live episode is prepared with:
+After installing the upstream runner dependencies and building its Docker image, validate the exact integration without making a provider call:
+
+```bash
+python3 scripts/run_tiai_trial.py \
+  --model <inspect-ai-model-id> \
+  --epochs 1 \
+  --episode-ceiling 1 \
+  --preflight
+```
+
+Only after that returns `READY_FOR_LIVE_RUN`, one bounded live episode is prepared with:
 
 ```bash
 python3 scripts/run_tiai_trial.py \
