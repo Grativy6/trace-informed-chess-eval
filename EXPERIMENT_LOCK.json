@@ -1,0 +1,16 @@
+{
+  "aggregate_sha256": "9ab56b9ac426cc5a429046062027a4c2e175ec1b1ee8cee23856c5ab3525d7b1",
+  "files": {
+    "EXPERIMENT_CONTRACT.md": "ba08bdbfa39e01a4c75d88c9532cbc2e58ece0a690010ecd9a268d4c57923620",
+    "SCORING_RUBRIC.md": "5d7b9ecdfcc02f27d2c98712354e53538f78773985efe7cf8e844968dac3458d",
+    "TIAI_KERNEL_v0.1.md": "07f8f8006e5796260fc65b80672f9e4e3f797cf98724bf79ebeb65cda11d9da4",
+    "TRACE_SCHEMA.json": "05788e288292f38c9df1959e62823805b37a6e2d267db31a3bb9cee14464c7ea",
+    "UPSTREAM.lock.json": "a3b5bc812a8ed7ed013589c4c68e4866c74cc1801ae867c15cbb2ede1257956e",
+    "scripts/run_tiai_trial.py": "9e20c6b365c8eab3258fb8e98cd90238b037674a71ba00d266eff9c35708b30c",
+    "tiai/intervention.py": "177dbf2ff1e04e80b819d8a1a57f9019cf0fd462b3f0e8513186270152e0ef15",
+    "tiai/kernel.py": "8c791e14e08ef7f911f3b10f7049481f8dd3d7b41cd858e7d334392f22ab86c5",
+    "tiai/ledger.py": "a2c22129e5cf869ec34206eccd0c739e1a4b8bbcea003bd51beda3701b3bfa0e"
+  },
+  "generated_at_utc": "2026-09-14T23:45:53.511698Z",
+  "lock_version": "0.1"
+}
