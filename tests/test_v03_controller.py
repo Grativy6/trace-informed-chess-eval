@@ -10,7 +10,7 @@ from tiai.v03_controller import (
     CapabilityRegistry,
     ClaimedBasis,
     CompletionClaim,
-    HonestFloorController,
+    PALController,
 )
 
 
@@ -48,7 +48,7 @@ class V03ControllerTests(unittest.TestCase):
     def setUp(self):
         registry_path = Path(__file__).resolve().parents[1] / "V0_3_CAPABILITY_REGISTRY.json"
         self.ledger = MemoryLedger()
-        self.controller = HonestFloorController(
+        self.controller = PALController(
             CapabilityRegistry.from_path(registry_path), self.ledger
         )
 
