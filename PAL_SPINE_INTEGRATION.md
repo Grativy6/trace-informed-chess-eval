@@ -32,6 +32,12 @@ The synopsis is an experiment-specific engineering summary, not a revision of PA
 
 This change adds the small complete **description** requested while keeping the claims about mechanical enforcement specific to the controller that actually exists. It does not replace the honest floor with names or add a benchmark-specific rule.
 
+## Quick spine reference
+
+Chris also supplied [PAL quick spine.docx](sources/PAL%20quick%20spine.docx), titled **PAL v2.3 Spine at a Glance**. The original bytes are preserved alongside a [readable Markdown copy](sources/PAL_quick_spine.md). Its table names the capability and minimum required witness for each of the 19 addresses from Ω, A0, Ω*, and θ through A1–A15, followed by the four-status closure and history-preserving reopening rule.
+
+This supplementary source makes the witness requirements easy to inspect when reading the enforcement correspondence above. It is not an additional model message or evidence that every listed witness is implemented. The acting prompt remains the hash-checked synopsis, original honest floor, and runtime interface described above.
+
 ## Pre-run evidence
 
 The old fidelity manifest is retained in `locks/V0_3_FIDELITY_MANIFEST.e647cab.json`. The new manifest includes the synopsis, revised floor, canonical source, integration note, and affected tests/runner. The source/floor tests verify preservation, and the no-provider prompt integration check records the actual first model-visible input for each arm. The standard preflight verifies the real Inspect tool-schema conversion and local Docker image availability. No benchmark/provider run is part of this change.

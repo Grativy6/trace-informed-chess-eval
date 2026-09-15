@@ -13,6 +13,7 @@ Start with:
 - [`V0_3_HPCP_PAIR_CONTRACT.md`](V0_3_HPCP_PAIR_CONTRACT.md)
 - [`HONESTY_PCP_v1.0.txt`](HONESTY_PCP_v1.0.txt)
 - [`TIAI_HONEST_FLOOR_v0.3.txt`](TIAI_HONEST_FLOOR_v0.3.txt)
+- [PAL spine at a glance — layer capabilities and minimum witnesses](sources/PAL_quick_spine.md) ([original Word file](sources/PAL%20quick%20spine.docx))
 - [`V0_3_CAPABILITY_REGISTRY.json`](V0_3_CAPABILITY_REGISTRY.json)
 - [`SOURCE_TO_ENFORCEMENT_MATRIX_v0.3.md`](SOURCE_TO_ENFORCEMENT_MATRIX_v0.3.md)
 - [`V0_3_HPCP_PAIR_RUNBOOK.md`](V0_3_HPCP_PAIR_RUNBOOK.md)
