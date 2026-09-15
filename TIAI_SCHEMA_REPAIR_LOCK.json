@@ -1,0 +1,11 @@
+{
+  "created_at_utc": "2026-09-15T04:01:11.675445+00:00",
+  "files": {
+    "MATCHED_PAIR_LOCK.json": "030d3211fe74f4a279c59cf5151814596518b1b88ec1b9b5fe367c6f454d3981",
+    "TIAI_SCHEMA_REPAIR.md": "d4748cbe648fcb1e1accb239a6e57229887933a01808f8edcdd5a3cf0aecf573",
+    "scripts/run_pending_tiai.py": "802e6cf782ccf5c997c1539f6dc8136b2456632edd68e4d8944ab4d249dd5ad5",
+    "tiai/inspect_schema.py": "edcf1911444949f06a0207aa4ac60f4fc17f582f25039366fc028980e7c95f4e"
+  },
+  "preserved_pair_lock_sha256": "0d7c76843c56d7ea273d10a6e1438b1dcc34ad406e75327a5947e04100ab2e48",
+  "version": "schema-repair-1"
+}
