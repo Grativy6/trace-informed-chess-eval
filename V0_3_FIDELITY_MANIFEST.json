@@ -1,7 +1,7 @@
 {
-  "aggregate_sha256": "fca4df05e5921cdbd9ce6f9fe0a4699dd3bbd90ac987cb99ac16bb8f53410ed8",
-  "base_commit": "a6b2594835c255997205eb1f6f449ad4e9af820e",
-  "condition": "Astra Honesty PCP-only and TIAI v0.3-only",
+  "aggregate_sha256": "728a2f5e86d9e1f6feb7e82b6f05a64fb9ba7c8d7975c4069e25fe92ec34f9c9",
+  "base_commit": "434041da1aba6a09f7dce3afad807ccbe3bc65cb",
+  "condition": "Independent Astra Honesty PCP-only or TIAI v0.3-only block",
   "dependencies": {
     "scripts/run_tiai_trial.py_git_blob": "c30a27746b11024518d7052e6c85e86ddf8ae68d",
     "tiai/budgeted_openai.py_git_blob": "bd724146b4cabadf64572a41281ecfd1b7900e8c",
@@ -9,14 +9,16 @@
     "tiai/spend.py_git_blob": "ee57314651a8df3920bc0cef82a83ce0c5e2e855"
   },
   "experiment_limits": {
-    "bare_astra_rerun": false,
-    "combined_tiai_hpcp_run": false,
-    "hard_cap_usd_per_arm": "5.50",
-    "max_new_spend_usd": "11.00",
-    "new_arms": [
+    "arm_selection_required": true,
+    "available_arms": [
       "hpcp_only",
       "tiai_v03"
     ],
+    "bare_astra_rerun": false,
+    "combined_tiai_hpcp_run": false,
+    "episodes_per_invocation": 1,
+    "hard_cap_usd_per_arm": "5.50",
+    "max_new_spend_usd": "5.50",
     "soft_close_usd_per_arm": "5.00"
   },
   "files": {
@@ -29,25 +31,26 @@
     "TIAI_HONEST_FLOOR_v0.3.txt": "8cfe85cb7cacedfc7786e52fb3906a512aee5391659cd7f081deb543236736f4",
     "TIAI_PAL_CONTEXT_v0.3.txt": "86948cf82305a53ca47bd7817274e662cb6f6c8c9cdaa6e64d0c443acf6939a8",
     "V0_3_CAPABILITY_REGISTRY.json": "950670e36fbf8bea1e17fd7a6f416d91ed767e7f692bfe40e4a463af661a4e94",
-    "V0_3_HPCP_PAIR_CONTRACT.md": "bbcb398ba7ce02442f9b4ecfee4038ccd6f730685cfa896d087de49cd81e89d4",
-    "V0_3_HPCP_PAIR_RUNBOOK.md": "65b4ea69cac8c7d87f75dbde1475c5db34c0a34a3e4f25a0e390ebb3e062d9a4",
+    "V0_3_HPCP_PAIR_CONTRACT.md": "79b1a8434390bd92352874c0f4070ab889a010e403615ddcef9a42722985f787",
+    "V0_3_HPCP_PAIR_RUNBOOK.md": "9f528cbbeb0f1decc5cecb9233c1194ba2c6686b9e2c90e0eab3bb0f828048d4",
     "locks/TIAI_HONEST_FLOOR.v0.3.e647cab.txt": "10eebb23655992be2218cd004290cb91d720c5e5b89b93757dfc27eba81d6709",
     "locks/V0_3_CAPABILITY_REGISTRY.e647cab.bin": "a59ae4988dc1197127ab12074d0c8a89a546c754169bb78268d68c280b9536b3",
     "locks/V0_3_FIDELITY_MANIFEST.e647cab.json": "efc0fbf5c18856ab2abf976b6358dbd330339bc042193d52d490ca7d9cb109dc",
-    "scripts/run_hpcp_vs_tiai_v03.py": "207531616ec7abc3ce0e6dbe845efa1eb86a69551b069415970574e614af71b3",
+    "scripts/dry_run_hpcp_vs_tiai_v03.py": "2ed79645dbf2d609fc4bcd72439fe3845fd227344dce14305c828011f30134af",
+    "scripts/run_hpcp_vs_tiai_v03.py": "01a97ba9c2857075efc5a46e4b76857e0354f6ef995466ed82687b4982996b16",
     "scripts/run_v03_hpcp_pair.py": "a55e62f124fc787070894a01cdd30b8d2cfbe50e920cc7e2e4e885661da9699e",
     "sources/PAL quick spine.docx": "144e89b71df3486cd05ab785c4b973cd5ebcfd0ca866dedf034a7a2752c39fa9",
     "sources/PAL_quick_spine.md": "98fafef1624b62d219d434d8d9e7afe797e3a092425b9c850eba9b330fc0721b",
     "sources/PAL_v2.3_Mechanical_Structural_Spine.md": "462dea7c760037c37dbf576df6762a26e2f30175b9af015698910bc0b7908b37",
     "tests/test_v03_controller.py": "accf89e445f00fc4e66d472c180e010a802179e5ad5a1f314961fdb3f38aee76",
-    "tests/test_v03_floor.py": "f1af781c6921fd9630ebbcc17d658912f06df766268afbf85aaf06a35fdb16fb",
+    "tests/test_v03_floor.py": "dcc829fcc15963ed37825cca08b6597fb5e449484edec40212abc20d54c9c592",
     "tiai/v03_controller.py": "3a8029c7eaf1e765498f246166842992b3dd9ad955dfbca1d210a1abd0f21428",
     "tiai/v03_runtime.py": "1083355fe78625c9ac1014163f4bd706d9e876511e6fc3ffcf01ce0f7b03612b"
   },
   "inspect_ai_version": "0.3.260",
   "preserved_manifest": "locks/V0_3_FIDELITY_MANIFEST.e647cab.json",
-  "previous_manifest_git": "a6b2594835c255997205eb1f6f449ad4e9af820e:V0_3_FIDELITY_MANIFEST.json",
-  "revision": "Classify a literal registry-root directory prefix and read-only source inspection by executed effects; preserve model contexts, registry, spend policy, and prior paid artifacts.",
-  "schema_version": "tiai-fidelity-manifest-v0.3.3",
+  "previous_manifest_git": "434041da1aba6a09f7dce3afad807ccbe3bc65cb:V0_3_FIDELITY_MANIFEST.json",
+  "revision": "Require selection of one independent block for each preflight, dry run, or paid invocation; remove automatic sequencing and first-block failure dependency while preserving each condition.",
+  "schema_version": "tiai-fidelity-manifest-v0.3.4",
   "upstream_commit": "2fe51b6239a6dca70abfd70aca528ff4a0b3c3bf"
 }

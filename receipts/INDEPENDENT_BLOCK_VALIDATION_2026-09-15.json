@@ -1,0 +1,129 @@
+{
+  "automatic_follow_on_or_fallback": false,
+  "blocks": [
+    {
+      "arm": "tiai_v03",
+      "dry_run": {
+        "artifact_sha256": {
+          "logs/dry-runs/dry-run-20260915T205506Z-4abf35/report.json": "d3f7e5f5491473854405adb08a43bcc896b2ff9424d20d383b1409c5bf085e8d",
+          "logs/dry-runs/dry-run-20260915T205506Z-4abf35/tiai_v03/inspect/2026-09-15T20-55-11-00-00_task_3w82J5NkdyrCygyFLNaWye.eval": "51743bcd544375d91886773201b61e94d3e32da506ed75c55f66f1a2b90ef4ab",
+          "logs/dry-runs/dry-run-20260915T205506Z-4abf35/tiai_v03/inspect/compose.json": "276e88c34dab75a764ec056a8b3efcf2f83759b014afb4f240ccb2a66b2341b3",
+          "logs/dry-runs/dry-run-20260915T205506Z-4abf35/tiai_v03/model-boundary-capture.json": "a5ec395ab897e7c5038655697c9953709164e7dd4499d209bcbaaebc1081a3b0",
+          "logs/dry-runs/dry-run-20260915T205506Z-4abf35/tiai_v03/result.json": "89879c91781fcd46fddda17cdba469afefa9614f666096d39946d74016baf48a",
+          "logs/dry-runs/dry-run-20260915T205506Z-4abf35/tiai_v03/spend.jsonl": "1b1e143befca5152b75babd165db75811eaf4f1aaf4eaf67f97e7ec02fb59176",
+          "logs/dry-runs/dry-run-20260915T205506Z-4abf35/tiai_v03/traces/4b7be9d5d140467c872ad4fb86e7b2d5.jsonl": "a691891d4ba1ffcffbbde641d32c01f8e30b2db4035a6b0a0f867c2ad98b8a2a",
+          "logs/dry-runs/dry-run-20260915T205506Z-4abf35/tiai_v03/transcript.json": "e61e348e20555fc34544c6f8933bb04fe062923ee60bd59bb73bda442226f6d3"
+        },
+        "checks": {
+          "admitted_commands": 8,
+          "blocked_command_marker_absent": true,
+          "blocked_commands": 1,
+          "burden_carried_to_completion": true,
+          "context_separation": "PASS",
+          "docker_setup_tools_and_grader": "PASS",
+          "receipt_chain": "PASS",
+          "receipt_count": 30,
+          "regression_commands_admitted": 3,
+          "scripted_model_calls": 10,
+          "single_model_event_loop": "PASS",
+          "unselected_arm_dispatch": "FORBIDDEN"
+        },
+        "guard": {
+          "internet_socket_attempts_blocked": 0,
+          "provider_credentials_removed_from_process": true,
+          "provider_model_constructions": 0
+        },
+        "run_id": "dry-run-20260915T205506Z-4abf35",
+        "status": "PASS_LOCAL_DOCKER_DRY_RUN"
+      },
+      "preflight": {
+        "artifact_sha256": {
+          "logs/independent-block-validation-final/tiai_v03/actual-model-inputs.json": "94ad1e21d06dcd9c15c70b7c62cafc78ac86790cbfce1aecfcff179a4b2290b3",
+          "logs/independent-block-validation-final/tiai_v03/preflight.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logs/independent-block-validation-final/tiai_v03/preflight.stdout.json": "90d8a0d719950825071cbae5f7fed02e76e9ce581bdcf3525dd7ffc4ed2a9890"
+        },
+        "provider_call_made": false,
+        "status": "READY_FOR_TIAI_V03",
+        "tests_passed": 32
+      }
+    },
+    {
+      "arm": "hpcp_only",
+      "dry_run": {
+        "artifact_sha256": {
+          "logs/dry-runs/dry-run-20260915T205525Z-6e980b/hpcp_only/hpcp-acknowledgement.json": "a4ea5e3d70cb82185cf5c9d167a3215b10a7bb9f99b1e9580957515121a44e52",
+          "logs/dry-runs/dry-run-20260915T205525Z-6e980b/hpcp_only/inspect/2026-09-15T20-55-29-00-00_task_eTrXdHrXmgnBsyJ5VMDMty.eval": "613799efc53c54ec90ec4741d92d4d00b284eb6ee35c17a1b47e4e8f9e22c393",
+          "logs/dry-runs/dry-run-20260915T205525Z-6e980b/hpcp_only/inspect/compose.json": "276e88c34dab75a764ec056a8b3efcf2f83759b014afb4f240ccb2a66b2341b3",
+          "logs/dry-runs/dry-run-20260915T205525Z-6e980b/hpcp_only/model-boundary-capture.json": "8770ef2609f84d1707e3cb803ba237f7f5edcd902ed72d596030850bc49daa26",
+          "logs/dry-runs/dry-run-20260915T205525Z-6e980b/hpcp_only/result.json": "589716981592a8b7ff919cf911a9f52e9ac66b488796de346cb2e31f6ad0a032",
+          "logs/dry-runs/dry-run-20260915T205525Z-6e980b/hpcp_only/spend.jsonl": "61f8c6ba891f42fdf01252d709b64e3c71a846e4407e1ea0469ff8e2ef5a1203",
+          "logs/dry-runs/dry-run-20260915T205525Z-6e980b/hpcp_only/transcript.json": "c3585043843e5ed9d1b078cc9be1c2d53823316689ec62fc3793e62c4f067f86",
+          "logs/dry-runs/dry-run-20260915T205525Z-6e980b/report.json": "f6dac0dd42210ac170e6135ccec8f3fbd9f5d0e1cd1e55d4a23310075fde8edc"
+        },
+        "checks": {
+          "context_separation": "PASS",
+          "docker_setup_tools_and_grader": "PASS",
+          "scripted_model_calls": 9,
+          "single_model_event_loop": "PASS",
+          "tiaI_controller_or_receipts_present": false,
+          "unselected_arm_dispatch": "FORBIDDEN"
+        },
+        "guard": {
+          "internet_socket_attempts_blocked": 0,
+          "provider_credentials_removed_from_process": true,
+          "provider_model_constructions": 0
+        },
+        "run_id": "dry-run-20260915T205525Z-6e980b",
+        "status": "PASS_LOCAL_DOCKER_DRY_RUN"
+      },
+      "preflight": {
+        "artifact_sha256": {
+          "logs/independent-block-validation-final/hpcp_only/actual-model-inputs.json": "20757f66bdf299c22959562152257b368857481dbf3595121652f63cfa716dae",
+          "logs/independent-block-validation-final/hpcp_only/preflight.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logs/independent-block-validation-final/hpcp_only/preflight.stdout.json": "629bf9e166f67f502634a05a8031ae2026abdb7490c5159dc6dd47afebbb4e69"
+        },
+        "provider_call_made": false,
+        "status": "READY_FOR_HPCP_ONLY",
+        "tests_passed": 32
+      }
+    }
+  ],
+  "episodes_per_invocation": 1,
+  "fidelity_manifest_sha256": "728a2f5e86d9e1f6feb7e82b6f05a64fb9ba7c8d7975c4069e25fe92ec34f9c9",
+  "limits": [
+    "Scripted dry runs establish execution and isolation, not Astra behavior.",
+    "Existing conservative-budget closing limitation remains unchanged.",
+    "No new paid episode was dispatched."
+  ],
+  "max_new_allocation_usd_per_invocation": "5.50",
+  "paid_artifacts_verified_unchanged": 14,
+  "preserved_condition_function_names": [
+    "_collect_plain_result",
+    "_load",
+    "generate_hpcp_acknowledgement",
+    "make_hpcp_only_solver",
+    "preflight_plain_tool",
+    "run_hpcp_only_arm",
+    "run_tiai_only_arm"
+  ],
+  "preserved_source_sha256": {
+    "HONESTY_PCP_v1.0.txt": "669abe2dba273fe6d6a78601f947dd7bbf31a46daed88f15d2b7eaa598aaaa48",
+    "TIAI_PAL_CONTEXT_v0.3.txt": "86948cf82305a53ca47bd7817274e662cb6f6c8c9cdaa6e64d0c443acf6939a8",
+    "V0_3_CAPABILITY_REGISTRY.json": "950670e36fbf8bea1e17fd7a6f416d91ed767e7f692bfe40e4a463af661a4e94",
+    "scripts/run_v03_hpcp_pair.py": "a55e62f124fc787070894a01cdd30b8d2cfbe50e920cc7e2e4e885661da9699e",
+    "tiai/budgeted_openai.py": "68889f565993f90562d24f38a5f0ef9856af6b47d293c1352efa2fa0351cd980",
+    "tiai/spend.py": "4cebdd479c73c0c495d78d32e6f18800fbb8b96c0b55196bae5f856bb55cb620",
+    "tiai/v03_controller.py": "3a8029c7eaf1e765498f246166842992b3dd9ad955dfbca1d210a1abd0f21428",
+    "tiai/v03_runtime.py": "1083355fe78625c9ac1014163f4bd706d9e876511e6fc3ffcf01ce0f7b03612b"
+  },
+  "provider_calls": 0,
+  "request": "they were always two different experimental blocks. go ahead and untie them",
+  "schema_version": "independent-block-validation-1",
+  "selection_required": true,
+  "source_base_commit": "434041da1aba6a09f7dce3afad807ccbe3bc65cb",
+  "source_state_note": "Verified from the base commit plus the working tree identified by the fidelity manifest; commit records the resulting files.",
+  "spend_usd": "0.00",
+  "status": "PASS_INDEPENDENT_BLOCKS_NO_PAID_DISPATCH",
+  "summary_filename": "run-summary.json",
+  "unselected_block_dispatch": "forbidden in each scripted dry run; actual CLI success and failure dispatches checked with local mocks"
+}
