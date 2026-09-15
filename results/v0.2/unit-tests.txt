@@ -1,0 +1,37 @@
+test_every_semantic_relation_dispatches_after_receipts (test_adapter.AdapterTests.test_every_semantic_relation_dispatches_after_receipts) ... ok
+test_invalid_trace_never_dispatches_but_is_receipted (test_adapter.AdapterTests.test_invalid_trace_never_dispatches_but_is_receipted) ... ok
+test_mismatched_grant_rejected_at_construction (test_adapter.AdapterTests.test_mismatched_grant_rejected_at_construction) ... ok
+test_persistence_failure_prevents_executor_and_poisoned_ledger_stays_closed (test_adapter.AdapterTests.test_persistence_failure_prevents_executor_and_poisoned_ledger_stays_closed) ... ok
+test_sync_async_parity_and_error_link (test_adapter.AdapterTests.test_sync_async_parity_and_error_link) ... ok
+test_blocked_decision_is_terminal_without_consequence (test_classifier.ClassifierTests.test_blocked_decision_is_terminal_without_consequence) ... ok
+test_duplicate_consequences_are_reported (test_classifier.ClassifierTests.test_duplicate_consequences_are_reported) ... ok
+test_empty_trace_is_not_reported_as_linked (test_classifier.ClassifierTests.test_empty_trace_is_not_reported_as_linked) ... ok
+test_environment_facts_are_independent (test_classifier.ClassifierTests.test_environment_facts_are_independent) ... ok
+test_invalid_grade_fields_are_unknown (test_classifier.ClassifierTests.test_invalid_grade_fields_are_unknown) ... ok
+test_invalid_trace_is_reported_without_erasing_grade (test_classifier.ClassifierTests.test_invalid_trace_is_reported_without_erasing_grade) ... ok
+test_malformed_record_is_reported (test_classifier.ClassifierTests.test_malformed_record_is_reported) ... ok
+test_orphan_and_duplicate_links_are_explicit (test_classifier.ClassifierTests.test_orphan_and_duplicate_links_are_explicit) ... ok
+test_pending_actions_and_review_axes_are_preserved (test_classifier.ClassifierTests.test_pending_actions_and_review_axes_are_preserved) ... ok
+test_all_semantic_relations_are_receipt_bound (test_kernel.KernelTests.test_all_semantic_relations_are_receipt_bound) ... ok
+test_empty_command_is_rejected (test_kernel.KernelTests.test_empty_command_is_rejected) ... ok
+test_environment_event_cannot_mutate_grant (test_kernel.KernelTests.test_environment_event_cannot_mutate_grant) ... ok
+test_invalid_relation_is_rejected_without_coercion (test_kernel.KernelTests.test_invalid_relation_is_rejected_without_coercion) ... ok
+test_nonmatching_basis_is_an_annotation (test_kernel.KernelTests.test_nonmatching_basis_is_an_annotation) ... ok
+test_hash_chain_durable_append_and_correction (test_ledger.LedgerTests.test_hash_chain_durable_append_and_correction) ... ok
+test_tamper_is_detected (test_ledger.LedgerTests.test_tamper_is_detected) ... ok
+test_modified_file_fails_verification (test_lock.LockTests.test_modified_file_fails_verification) ... ok
+test_v02_lock_cannot_omit_required_implementation_files (test_lock.LockTests.test_v02_lock_cannot_omit_required_implementation_files) ... ok
+test_acting_kernel_has_no_benchmark_terms (test_no_special_cases.NoSpecialCaseTests.test_acting_kernel_has_no_benchmark_terms) ... ok
+test_direct_astra_requires_responses_flag (test_provider_transport.ProviderTransportTests.test_direct_astra_requires_responses_flag) ... ok
+test_generation_settings_are_not_provider_arguments (test_provider_transport.ProviderTransportTests.test_generation_settings_are_not_provider_arguments) ... ok
+test_local_construction_does_not_generate (test_provider_transport.ProviderTransportTests.test_local_construction_does_not_generate) ... ok
+test_responses_flag_merges_into_provider_model_args (test_provider_transport.ProviderTransportTests.test_responses_flag_merges_into_provider_model_args) ... ok
+test_responses_flag_rejects_other_provider (test_provider_transport.ProviderTransportTests.test_responses_flag_rejects_other_provider) ... ok
+test_inspect_tool_dispatches_all_relations_with_preexisting_receipts (test_traced_runtime.TracedRuntimeTests.test_inspect_tool_dispatches_all_relations_with_preexisting_receipts) ... ok
+test_inspect_tool_never_reaches_sandbox_after_receipt_write_failure (test_traced_runtime.TracedRuntimeTests.test_inspect_tool_never_reaches_sandbox_after_receipt_write_failure) ... ok
+test_inspect_tool_records_execution_error (test_traced_runtime.TracedRuntimeTests.test_inspect_tool_records_execution_error) ... ok
+
+----------------------------------------------------------------------
+Ran 32 tests in 1.651s
+
+OK

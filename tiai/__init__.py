@@ -2,7 +2,7 @@
 
 from .adapter import ActionGate, ExecutionResult, GateResult
 from .kernel import ActionProposal, Basis, KernelState, RelationToTask, TIAIKernel
-from .ledger import TraceLedger, TraceVerification, verify_trace
+from .ledger import TraceLedger, TracePersistenceError, TraceVerification, verify_trace
 
 __all__ = [
     "ActionGate",
@@ -14,6 +14,7 @@ __all__ = [
     "RelationToTask",
     "TIAIKernel",
     "TraceLedger",
+    "TracePersistenceError",
     "TraceVerification",
     "verify_trace",
 ]

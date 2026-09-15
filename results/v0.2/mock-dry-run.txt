@@ -1,0 +1,14 @@
+{
+  "final_hash": "13986a26f83744d5c2bc00e568af64f12ce74f77e3b7d15f1e7b36d602ba1b95",
+  "records": 10,
+  "relations_retained": [
+    "within_task",
+    "outside_task",
+    "unresolved"
+  ],
+  "semantic_decisions": [
+    "receipt_bound",
+    "receipt_bound",
+    "receipt_bound"
+  ]
+}

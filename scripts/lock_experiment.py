@@ -13,14 +13,19 @@ ROOT = Path(__file__).resolve().parents[1]
 LOCK_PATH = ROOT / "EXPERIMENT_LOCK.json"
 LOCKED_PATHS = (
     "EXPERIMENT_CONTRACT.md",
-    "TIAI_KERNEL_v0.1.md",
+    "TIAI_KERNEL_v0.2.md",
     "TRACE_SCHEMA.json",
     "SCORING_RUBRIC.md",
     "UPSTREAM.lock.json",
     "tiai/kernel.py",
+    "tiai/adapter.py",
     "tiai/ledger.py",
     "tiai/intervention.py",
+    "tiai/__init__.py",
     "scripts/run_tiai_trial.py",
+    "scripts/classify_trial.py",
+    "scripts/lock_experiment.py",
+    "pyproject.toml",
 )
 
 
@@ -34,7 +39,8 @@ def build_manifest(root: Path = ROOT) -> dict[str, object]:
         json.dumps(files, sort_keys=True, separators=(",", ":")).encode("utf-8")
     ).hexdigest()
     return {
-        "lock_version": "0.1",
+        "lock_version": "0.2",
+        "supersedes": "locks/EXPERIMENT_LOCK.v0.1.1.json",
         "generated_at_utc": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "files": files,
         "aggregate_sha256": aggregate,
@@ -46,6 +52,8 @@ def verify_manifest(root: Path = ROOT, lock_path: Path = LOCK_PATH) -> tuple[boo
         return False, [f"missing lock: {lock_path}"]
     stored = json.loads(lock_path.read_text(encoding="utf-8"))
     errors: list[str] = []
+    if stored.get("lock_version") == "0.2" and set(stored.get("files", {})) != set(LOCKED_PATHS):
+        errors.append("v0.2 lock file coverage mismatch")
     for relative, expected in stored.get("files", {}).items():
         path = root / relative
         if not path.exists():
