@@ -46,7 +46,7 @@ class V03FloorTests(unittest.TestCase):
             runner.EXPECTED_HPCP_SHA256,
         )
 
-    def _run_main_with_selected_arm(self, arm, *, failure=False):
+    def _run_main_with_selected_arm(self, arm, *, failure=False, spend_policy="capped"):
         from tiai.spend import SpendGovernor
 
         fidelity = {"aggregate_sha256": "test-fidelity"}
@@ -74,6 +74,7 @@ class V03FloorTests(unittest.TestCase):
             args = [
                 "--execute", "--arm", arm, "--run-id", "single",
                 "--output-dir", str(output), "--acknowledge-external-cost",
+                "--spend-policy", spend_policy,
             ]
             with patch.dict(os.environ, {"OPENAI_API_KEY": "test-key"}), \
                 patch.object(runner.BASE, "validate_runtime", return_value=(object(), manifest, fidelity)), \
@@ -89,7 +90,8 @@ class V03FloorTests(unittest.TestCase):
             self.assertEqual(result, 1 if failure else 0)
             self.assertEqual(calls["models"], 1)
             self.assertEqual(governor_ctor.call_count, 1)
-            self.assertEqual(governor_ctor.call_args.kwargs["budget_usd"], "6.00")
+            expected_budget = "6.00" if spend_policy == "capped" else None
+            self.assertEqual(governor_ctor.call_args.kwargs["budget_usd"], expected_budget)
             self.assertEqual(calls["hpcp"], int(arm == "hpcp_only"))
             self.assertEqual(calls["tiai"], int(arm == "tiai_v03"))
             run_dir = output / "single"
@@ -97,7 +99,15 @@ class V03FloorTests(unittest.TestCase):
             self.assertFalse((run_dir / ("tiai_v03" if arm == "hpcp_only" else "hpcp_only")).exists())
             summary = json.loads((run_dir / "run-summary.json").read_text(encoding="utf-8"))
             self.assertEqual(summary["selected_arm"], arm)
-            self.assertEqual(summary["max_new_allocation_usd"], "6.00")
+            self.assertEqual(
+                summary["max_new_allocation_usd"],
+                "6.00" if spend_policy == "capped" else None,
+            )
+            self.assertEqual(summary["spend_policy"], spend_policy)
+            self.assertEqual(
+                summary["hard_cap_usd_per_arm"],
+                None if spend_policy == "provider-credit" else "6.00",
+            )
             self.assertEqual(len(summary["results"]), 1)
             self.assertEqual(summary["results"][0]["arm"], arm)
             self.assertNotIn("prepared_not_run", json.dumps(summary))
@@ -107,6 +117,23 @@ class V03FloorTests(unittest.TestCase):
 
     def test_tiai_dispatch_is_independent(self):
         self._run_main_with_selected_arm("tiai_v03")
+
+    def test_provider_credit_policy_is_uncapped_and_recorded(self):
+        self._run_main_with_selected_arm("tiai_v03", spend_policy="provider-credit")
+
+    def test_provider_credit_mode_skips_closing_notice(self):
+        source = inspect.getsource(runner.make_hpcp_only_solver)
+        self.assertIn('spend_policy == "provider-credit"', source)
+        base_source = inspect.getsource(runner.BASE.make_v03_solver)
+        self.assertIn('spend_policy == "provider-credit"', base_source)
+
+    def test_provider_credit_mode_writes_episode_checkpoint_before_cleanup(self):
+        hpcp_source = inspect.getsource(runner.make_hpcp_only_solver)
+        tiai_source = inspect.getsource(runner.BASE.make_v03_solver)
+        for source in (hpcp_source, tiai_source):
+            self.assertIn("write_episode_checkpoint", source)
+            self.assertIn('spend_policy == "provider-credit"', source)
+            self.assertIn("checkpoint_path", source)
 
     def test_runtime_failure_does_not_dispatch_the_other_arm(self):
         for arm in ("hpcp_only", "tiai_v03"):

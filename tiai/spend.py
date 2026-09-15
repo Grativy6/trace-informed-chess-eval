@@ -70,9 +70,14 @@ class SpendGovernor:
     restarted command cannot accidentally resume, replay, or reset a paid run.
     """
 
-    def __init__(self, path: Path, budget_usd: str = "9.00") -> None:
+    def __init__(self, path: Path, budget_usd: str | None = "9.00") -> None:
         self.path = Path(path)
-        self.budget_nanodollars = self._parse_budget(budget_usd)
+        # ``None`` is an explicit provider-credit mode.  It still journals
+        # conservative reservations and exact settlements, but the provider
+        # account (rather than a local dollar ceiling) decides when a request
+        # can no longer be made.
+        self.policy_identifier = "provider_credit_uncapped" if budget_usd is None else "local_usd_cap"
+        self.budget_nanodollars = None if budget_usd is None else self._parse_budget(budget_usd)
         if self.path.exists() and self.path.stat().st_size:
             raise SpendGovernorError(f"refusing non-empty spend journal: {self.path}")
         self.path.parent.mkdir(parents=True, exist_ok=True)
@@ -164,17 +169,21 @@ class SpendGovernor:
         desired_output = min(desired_output, MAX_OUTPUT_TOKENS)
         _, _, worst_input_rate, long_context = self._rates(input_tokens)
         input_reservation = input_tokens * worst_input_rate
-        available = self.budget_nanodollars - self._reconciled_nanodollars - self._unresolved_nanodollars
         output_rate = self._output_rate(long_context)
-        affordable_output = max(0, (available - input_reservation) // output_rate)
-        output_ceiling = min(desired_output, affordable_output)
-        if output_ceiling < MIN_AFFORDABLE_OUTPUT_TOKENS:
-            self.stop_reason = "budget_exhausted_before_generation"
-            self._append(
-                "budget_stop",
-                {"input_tokens": input_tokens, "available_nanodollars": max(0, available), "reason": self.stop_reason},
-            )
-            raise SpendStopped(self.stop_reason)
+        if self.budget_nanodollars is None:
+            available = None
+            output_ceiling = desired_output
+        else:
+            available = self.budget_nanodollars - self._reconciled_nanodollars - self._unresolved_nanodollars
+            affordable_output = max(0, (available - input_reservation) // output_rate)
+            output_ceiling = min(desired_output, affordable_output)
+            if output_ceiling < MIN_AFFORDABLE_OUTPUT_TOKENS:
+                self.stop_reason = "budget_exhausted_before_generation"
+                self._append(
+                    "budget_stop",
+                    {"input_tokens": input_tokens, "available_nanodollars": max(0, available), "reason": self.stop_reason},
+                )
+                raise SpendStopped(self.stop_reason)
         reservation = Reservation(
             request_index=len(self._reservations) + 1,
             input_tokens=input_tokens,
@@ -190,6 +199,7 @@ class SpendGovernor:
             {
                 "reservation": asdict(reservation),
                 "output_ceiling_reduced": output_ceiling < desired_output,
+                "policy_identifier": self.policy_identifier,
             },
         )
         self._reservations[reservation.request_index] = reservation
@@ -294,7 +304,9 @@ class SpendGovernor:
         return settlement
 
     def summary(self) -> dict[str, Any]:
-        available = max(0, self.budget_nanodollars - self._reconciled_nanodollars - self._unresolved_nanodollars)
+        available = None if self.budget_nanodollars is None else max(
+            0, self.budget_nanodollars - self._reconciled_nanodollars - self._unresolved_nanodollars
+        )
         conservative = sum(
             settlement["charged_nanodollars"]
             for settlement in self._settlements.values()
@@ -302,6 +314,7 @@ class SpendGovernor:
         )
         return {
             "budget_nanodollars": self.budget_nanodollars,
+            "policy_identifier": self.policy_identifier,
             "reconciled_nanodollars": self._reconciled_nanodollars,
             "conservative_upper_bound_nanodollars": conservative,
             "unresolved_reserved_nanodollars": self._unresolved_nanodollars,

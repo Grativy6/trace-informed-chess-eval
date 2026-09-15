@@ -20,7 +20,6 @@ COUNT_FIELDS = {
 
 class PaidEpisodeStop(LimitExceededError):
     def __init__(self, reason: str):
-        # A stopped request can be unaffordable even before USD 9 is spent.
         # The monetary evidence lives in the governor, not this stop marker.
         super().__init__("custom", value=1, limit=1, message=reason)
 
@@ -40,6 +39,7 @@ def install_responses_budget(model: Any, governor: SpendGovernor) -> Any:
         "model": "openai/gpt-6-astra", "service_tier": "default",
         "sdk_retries": client.max_retries, "inspect_retries": model.config.max_retries,
         "budget_nanodollars": governor.summary()["budget_nanodollars"],
+        "policy_identifier": governor.summary()["policy_identifier"],
     })
     if model.config.max_retries != 0:
         raise ValueError("Inspect retries must be disabled before budget binding")

@@ -102,3 +102,31 @@ class SpendGovernorTests(unittest.TestCase):
                 governor.reserve(1, 16)
             with self.assertRaisesRegex(Exception, "non-empty"):
                 SpendGovernor(path)
+
+    def test_provider_credit_mode_does_not_reduce_or_stop_on_local_dollars(self):
+        with tempfile.TemporaryDirectory() as directory:
+            governor = SpendGovernor(Path(directory) / "spend.jsonl", budget_usd=None)
+            first = governor.reserve(350_000, MAX_OUTPUT_TOKENS)
+            self.assertEqual(first.max_output_tokens, MAX_OUTPUT_TOKENS)
+            self.assertEqual(governor.summary()["budget_nanodollars"], None)
+            self.assertIsNone(governor.summary()["available_nanodollars"])
+            self.assertEqual(governor.summary()["policy_identifier"], "provider_credit_uncapped")
+            settled = governor.settle(
+                first,
+                {"input_tokens": 350_000, "output_tokens": 128_000,
+                 "input_tokens_details": {"cached_tokens": 0, "cache_write_tokens": 0}},
+            )
+            self.assertGreater(settled["charged_nanodollars"], 9 * 1_000_000_000)
+            self.assertIsNone(governor.stop_reason)
+            second = governor.reserve(100, 16)
+            self.assertEqual(second.max_output_tokens, 16)
+
+    def test_provider_credit_mode_keeps_uncertain_request_terminal(self):
+        with tempfile.TemporaryDirectory() as directory:
+            governor = SpendGovernor(Path(directory) / "spend.jsonl", budget_usd=None)
+            reservation = governor.reserve(100, 16)
+            outcome = governor.mark_uncertain(reservation, "provider_timeout")
+            self.assertEqual(outcome["status"], "uncertain")
+            self.assertEqual(governor.stop_reason, "usage_unreconciled")
+            with self.assertRaises(SpendStopped):
+                governor.reserve(1, 16)
