@@ -1,6 +1,6 @@
 {
-  "aggregate_sha256": "15d2f3369f2daf550a50f6e0f7f887eb4b9c749bd039f3dd5c80d771475bc05f",
-  "base_commit": "66b74261e025ea117841d3786a810c13f323013d",
+  "aggregate_sha256": "823c5e3132aed3dc8fdfc5554b2c57c34a7804c40fe889af7553cb112d35b872",
+  "base_commit": "e647cab721cc888387f5a95b0dc85c68e041b195",
   "condition": "Astra Honesty PCP-only and TIAI v0.3-only",
   "dependencies": {
     "scripts/run_tiai_trial.py_git_blob": "c30a27746b11024518d7052e6c85e86ddf8ae68d",
@@ -20,21 +20,30 @@
     "soft_close_usd_per_arm": "5.00"
   },
   "files": {
+    ".gitattributes": "88eb62440bdfc02ff9a11ce03e18a2ed47f1f2cd607cb88f49e3fab86d8bacb2",
     "AUTHOR_RUN_INSTRUCTION_CORRECTION_2026-09-15.md": "56519f8c2896c96ae62358e9a923d8cf2314a1ff8448777bb4e88f5954e2bd08",
     "AUTHOR_RUN_RECEIPT_2026-09-15.md": "06392cc8cb65f67320614fa642bc4511594eb06f0957d6a7bddb72e683f42ec8",
     "HONESTY_PCP_v1.0.txt": "669abe2dba273fe6d6a78601f947dd7bbf31a46daed88f15d2b7eaa598aaaa48",
-    "TIAI_HONEST_FLOOR_v0.3.txt": "10eebb23655992be2218cd004290cb91d720c5e5b89b93757dfc27eba81d6709",
+    "PAL_MECHANICAL_SPINE_v2.3.txt": "b1d8785d499582716a97a4da81d46b263310856bead262f5188cd3748e74800d",
+    "PAL_SPINE_INTEGRATION.md": "5f12c23a2174862212bacfc33f76c8020070b04256c5e316195d19fcfdc8b910",
+    "TIAI_HONEST_FLOOR_v0.3.txt": "8cfe85cb7cacedfc7786e52fb3906a512aee5391659cd7f081deb543236736f4",
     "V0_3_CAPABILITY_REGISTRY.json": "950670e36fbf8bea1e17fd7a6f416d91ed767e7f692bfe40e4a463af661a4e94",
-    "V0_3_HPCP_PAIR_CONTRACT.md": "47fb6a452900e41a7d6c9fb640843b9f1fa61be2726385d678c0e166a1784f1c",
-    "V0_3_HPCP_PAIR_RUNBOOK.md": "e481ecda5476d5eba61ea612e9d777fe2cc313a3f5a98755693567e80efe93ba",
+    "V0_3_HPCP_PAIR_CONTRACT.md": "1038e131549690d8a24a101853399909f9bdefb2f56b27f0e41f50b704bce591",
+    "V0_3_HPCP_PAIR_RUNBOOK.md": "69337fb5b81c3e5802a191e80b95e1735501d79ee885c475d97b118d28b8dac1",
+    "locks/TIAI_HONEST_FLOOR.v0.3.e647cab.txt": "10eebb23655992be2218cd004290cb91d720c5e5b89b93757dfc27eba81d6709",
+    "locks/V0_3_CAPABILITY_REGISTRY.e647cab.bin": "a59ae4988dc1197127ab12074d0c8a89a546c754169bb78268d68c280b9536b3",
+    "locks/V0_3_FIDELITY_MANIFEST.e647cab.json": "efc0fbf5c18856ab2abf976b6358dbd330339bc042193d52d490ca7d9cb109dc",
     "scripts/run_hpcp_vs_tiai_v03.py": "6f6711277c35f372fc697015580fb81e4819337d4ced6b4d36b79262d015d576",
-    "scripts/run_v03_hpcp_pair.py": "2984c385f4ebcd05cd3a5a1d69fa8082092b9480b6c69605accf4492fb36c187",
+    "scripts/run_v03_hpcp_pair.py": "d29ced15e1965d54c967604648ae2bdd9ce8dd994f7fa5e981a5f23d40971835",
+    "sources/PAL_v2.3_Mechanical_Structural_Spine.md": "462dea7c760037c37dbf576df6762a26e2f30175b9af015698910bc0b7908b37",
     "tests/test_v03_controller.py": "600c15502fe16af0e46abfca067d69978946ac47519bd2f474c7e1d84f492412",
-    "tests/test_v03_floor.py": "066fc6b3cc01925efffaf2a6d9d403eccd4a0a2ee1312ae170ddf3d785daa03c",
+    "tests/test_v03_floor.py": "123901e1cef4df9d963bc970b78ae45aa9e48513cf553233241d9dd3551b9e4b",
     "tiai/v03_controller.py": "b708d0dba9f78e3f6190c283178ca28d6b648fcf57251cbcdd2f8fb2d5a168ee",
     "tiai/v03_runtime.py": "e6642146e04e98026560107e327b9653a1c5e5d9307666afb32e98f269446318"
   },
   "inspect_ai_version": "0.3.260",
-  "schema_version": "tiai-fidelity-manifest-v0.3.1",
+  "preserved_manifest": "locks/V0_3_FIDELITY_MANIFEST.e647cab.json",
+  "revision": "PAL v2.3 compact spine prepended to the original honest floor; recover registry serialization before new paid runs",
+  "schema_version": "tiai-fidelity-manifest-v0.3.2",
   "upstream_commit": "2fe51b6239a6dca70abfd70aca528ff4a0b3c3bf"
 }
