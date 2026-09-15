@@ -8,6 +8,7 @@ are plumbing evidence only, not model-behavior results.
 from __future__ import annotations
 
 import argparse
+import asyncio
 from datetime import datetime, timezone
 from hashlib import sha256
 import importlib.util
@@ -85,9 +86,15 @@ class ScriptedArm:
         self.burden_ids = []
         self.marker_absent = False
         self.system_context_present = False
+        self.event_loop = None
 
     def respond(self, messages, tools, tool_choice, config):
         from inspect_ai.model import ModelOutput
+        current_loop = asyncio.get_running_loop()
+        if self.event_loop is None:
+            self.event_loop = current_loop
+        else:
+            assert self.event_loop is current_loop, "model client crossed event loops"
         if len(self.calls) >= 12:
             raise RuntimeError("scripted response limit exceeded")
         self.calls.append({"messages": [{"role": m.role, "text": m.text} for m in messages], "tools": [t.model_dump(mode="json") for t in tools]})
@@ -218,7 +225,7 @@ def main() -> int:
             assert result["inspect_status"] == "success" and result["samples"] == 1
             assert result["scores"] and result["scores"][0]["scores"], "shipped grader did not return a score"
             assert int(governor.summary()["reconciled_nanodollars"]) == 0
-            checks = {"docker_setup_tools_and_grader": "PASS", "scripted_model_calls": len(script.calls), "context_separation": "PASS"}
+            checks = {"docker_setup_tools_and_grader": "PASS", "scripted_model_calls": len(script.calls), "context_separation": "PASS", "single_model_event_loop": "PASS"}
             if arm == "tiai_v03":
                 traces = list((arm_dir / "traces").glob("*.jsonl"))
                 assert len(traces) == 1
