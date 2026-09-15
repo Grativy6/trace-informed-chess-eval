@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import asyncio
-from typing import Any
+from typing import Any, Callable
 
 from openai import NotGiven
 from inspect_ai.model._providers.openai_responses import HttpxHooks
@@ -24,7 +24,12 @@ class PaidEpisodeStop(LimitExceededError):
         super().__init__("custom", value=1, limit=1, message=reason)
 
 
-def install_responses_budget(model: Any, governor: SpendGovernor) -> Any:
+def install_responses_budget(
+    model: Any,
+    governor: SpendGovernor,
+    *,
+    prepare_client: Callable[[Any], Any] | None = None,
+) -> Any:
     """Wrap this model instance only; both SDK and Inspect retries must be zero."""
     if model.name != "gpt-6-astra" or not model.api.responses_api:
         raise ValueError("budget binding requires direct Astra Responses")
@@ -33,6 +38,8 @@ def install_responses_budget(model: Any, governor: SpendGovernor) -> Any:
     # Cloning the SDK client keeps credentials in memory and disables SDK retries.
     client = model.api.client.with_options(max_retries=0)
     model.api.client = client
+    if prepare_client is not None:
+        prepare_client(client)
     original_create = client.responses.create
     dispatch_lock = asyncio.Lock()
     governor.record("provider_binding", {
