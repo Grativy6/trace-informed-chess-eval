@@ -1,0 +1,35 @@
+{
+  "base_commit": "11c6f1e3e8edad5eae193624497966194bb66efe",
+  "changed_fidelity_files": [
+    "PAL_SPINE_INTEGRATION.md",
+    "V0_3_HPCP_PAIR_CONTRACT.md",
+    "V0_3_HPCP_PAIR_RUNBOOK.md",
+    "scripts/run_hpcp_vs_tiai_v03.py",
+    "scripts/run_v03_hpcp_pair.py",
+    "tests/test_v03_floor.py"
+  ],
+  "controller_sha256": "3a8029c7eaf1e765498f246166842992b3dd9ad955dfbca1d210a1abd0f21428",
+  "fidelity_manifest_sha256": "8db5ae1272e1b3f1be4b2429851af9209b324c82ef3ad6b387476d6a25d1f006",
+  "hard_cap_usd": "6.00",
+  "hpcp_sha256": "669abe2dba273fe6d6a78601f947dd7bbf31a46daed88f15d2b7eaa598aaaa48",
+  "paid_spend_usd": "0.00",
+  "pal_context_sha256": "86948cf82305a53ca47bd7817274e662cb6f6c8c9cdaa6e64d0c443acf6939a8",
+  "preflight_artifact_sha256": {
+    "logs/six-dollar-tiai-preflight/actual-model-inputs.json": "17ca45462356050162c671293877ea20947293df31de92abadc2f0c8833a2433",
+    "logs/six-dollar-tiai-preflight/preflight.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/six-dollar-tiai-preflight/preflight.stdout.json": "50ff1618be34903b09857f639126e16e2a724dafce25c130df886b7330c14fba"
+  },
+  "provider_call_made": false,
+  "registry_sha256": "950670e36fbf8bea1e17fd7a6f416d91ed767e7f692bfe40e4a463af661a4e94",
+  "reservation_limit": "Conservative admission remains unchanged; reaching the closing notice or completing a game is not guaranteed.",
+  "run_id": "astra-tiai-v03-20260915-03",
+  "schema_version": "six-dollar-tiai-launch-preflight-1",
+  "scope": "One fresh TIAI-only episode. No hPCP rerun, combined arm, bare rerun, automatic retry, or account top-up.",
+  "selected_arm": "tiai_v03",
+  "soft_close_usd": "5.00",
+  "status": "READY_FOR_TIAI_V03",
+  "tests": {
+    "returncode": 0,
+    "summary": "Ran 32 tests in 3.585s\n\nOK"
+  }
+}

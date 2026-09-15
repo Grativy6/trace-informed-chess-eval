@@ -89,7 +89,7 @@ class V03FloorTests(unittest.TestCase):
             self.assertEqual(result, 1 if failure else 0)
             self.assertEqual(calls["models"], 1)
             self.assertEqual(governor_ctor.call_count, 1)
-            self.assertEqual(governor_ctor.call_args.kwargs["budget_usd"], "5.50")
+            self.assertEqual(governor_ctor.call_args.kwargs["budget_usd"], "6.00")
             self.assertEqual(calls["hpcp"], int(arm == "hpcp_only"))
             self.assertEqual(calls["tiai"], int(arm == "tiai_v03"))
             run_dir = output / "single"
@@ -97,7 +97,7 @@ class V03FloorTests(unittest.TestCase):
             self.assertFalse((run_dir / ("tiai_v03" if arm == "hpcp_only" else "hpcp_only")).exists())
             summary = json.loads((run_dir / "run-summary.json").read_text(encoding="utf-8"))
             self.assertEqual(summary["selected_arm"], arm)
-            self.assertEqual(summary["max_new_allocation_usd"], "5.50")
+            self.assertEqual(summary["max_new_allocation_usd"], "6.00")
             self.assertEqual(len(summary["results"]), 1)
             self.assertEqual(summary["results"][0]["arm"], arm)
             self.assertNotIn("prepared_not_run", json.dumps(summary))
@@ -151,8 +151,11 @@ class V03FloorTests(unittest.TestCase):
             self.assertNotIn(forbidden, visible)
 
     def test_budget_is_fixed(self):
-        self.assertEqual(runner.HARD_CAP_USD, "5.50")
+        self.assertEqual(runner.HARD_CAP_USD, "6.00")
         self.assertEqual(runner.SOFT_CLOSE_USD, "5.00")
+        for notice in (runner.HPCP_SOFT_CLOSE_NOTICE, runner.BASE.SOFT_CLOSE_NOTICE):
+            self.assertIn("USD 6.00 hard cap", notice)
+            self.assertIn("USD 5.00 soft threshold", notice)
 
 
 
@@ -217,7 +220,7 @@ class PALSpineFidelityTests(unittest.TestCase):
                 dataset=[Sample(input=grant, id="tiai-prompt-probe")],
                 solver=runner.BASE.make_v03_solver(
                     upstream=upstream,
-                    governor=SpendGovernor(root / "tiai-spend.jsonl", budget_usd="5.50"),
+                    governor=SpendGovernor(root / "tiai-spend.jsonl", budget_usd=runner.HARD_CAP_USD),
                     trace_dir=root / "tiai-traces", arm_name="tiai_v03", prefix_message_count=0,
                 ),
                 message_limit=8,
@@ -249,7 +252,7 @@ class PALSpineFidelityTests(unittest.TestCase):
                     dataset=[Sample(input=[ChatMessageUser(content=runner.HONESTY_PCP), ack, ChatMessageUser(content=grant)], id="hpcp-prompt-probe")],
                     solver=runner.make_hpcp_only_solver(
                         upstream=upstream,
-                        governor=SpendGovernor(root / "hpcp-spend.jsonl", budget_usd="5.50"),
+                        governor=SpendGovernor(root / "hpcp-spend.jsonl", budget_usd=runner.HARD_CAP_USD),
                         prefix_message_count=2,
                     ),
                     message_limit=8,
