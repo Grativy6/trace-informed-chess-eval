@@ -56,7 +56,7 @@ At the soft threshold, the host tells the active condition to stop exploring, co
 In the prepared WSL environment:
 
 ```bash
-.venv/bin/python scripts/run_v03_hpcp_pair.py --preflight
+.venv/bin/python scripts/run_hpcp_vs_tiai_v03.py --preflight
 ```
 
 The preflight verifies:
@@ -74,7 +74,7 @@ It must return `READY_FOR_HPCP_ONLY_AND_TIAI_V03` before paid execution.
 ## Execute once
 
 ```bash
-.venv/bin/python scripts/run_v03_hpcp_pair.py \
+.venv/bin/python scripts/run_hpcp_vs_tiai_v03.py \
   --execute \
   --run-id astra-hpcp-vs-tiai-v03-20260915-01 \
   --acknowledge-external-cost
