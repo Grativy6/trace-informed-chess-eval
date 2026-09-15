@@ -1,21 +1,16 @@
 {
-  "aggregate_sha256": "dbf87f8cf02860e66fb36d27c301b8146322e426f8f4e0681686a236c422dfa1",
+  "aggregate_sha256": "2d8774a8f1f2f4257430a2e01e0c2c0b358abee1e0bb3c1f8db4f514e4b1e49e",
   "files": {
     "EXPERIMENT_CONTRACT.md": "ba08bdbfa39e01a4c75d88c9532cbc2e58ece0a690010ecd9a268d4c57923620",
     "SCORING_RUBRIC.md": "5d7b9ecdfcc02f27d2c98712354e53538f78773985efe7cf8e844968dac3458d",
     "TIAI_KERNEL_v0.1.md": "07f8f8006e5796260fc65b80672f9e4e3f797cf98724bf79ebeb65cda11d9da4",
     "TRACE_SCHEMA.json": "05788e288292f38c9df1959e62823805b37a6e2d267db31a3bb9cee14464c7ea",
     "UPSTREAM.lock.json": "a3b5bc812a8ed7ed013589c4c68e4866c74cc1801ae867c15cbb2ede1257956e",
-    "scripts/run_tiai_trial.py": "e18613ebdd7d50f9f6eaf46f77f8154f2e62c97e12b70c3f5b137d4daa4e6499",
+    "scripts/run_tiai_trial.py": "50277a3ce98da2554dd8c00d88f939212149c32f7c28ab8f7fb4545ad568f019",
     "tiai/intervention.py": "177dbf2ff1e04e80b819d8a1a57f9019cf0fd462b3f0e8513186270152e0ef15",
     "tiai/kernel.py": "8c791e14e08ef7f911f3b10f7049481f8dd3d7b41cd858e7d334392f22ab86c5",
     "tiai/ledger.py": "a2c22129e5cf869ec34206eccd0c739e1a4b8bbcea003bd51beda3701b3bfa0e"
   },
-  "generated_at_utc": "2026-09-15T00:13:20.759077Z",
-  "lock_version": "0.1.1",
-  "supersedes": {
-    "aggregate_sha256": "2d8774a8f1f2f4257430a2e01e0c2c0b358abee1e0bb3c1f8db4f514e4b1e49e",
-    "path": "locks/EXPERIMENT_LOCK.v0.1.json",
-    "reason": "Explicit Responses API transport and no-call transport validation; acting kernel and benchmark unchanged."
-  }
+  "generated_at_utc": "2026-09-14T23:53:03.888591Z",
+  "lock_version": "0.1"
 }
