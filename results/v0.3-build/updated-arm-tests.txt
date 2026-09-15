@@ -1,0 +1,4 @@
+$ python -m py_compile scripts/run_hpcp_vs_tiai_v03.py tests/test_v03_floor.py
+
+$ PYTHONPATH=<fixture> python -m unittest discover -s tests -p 'test_v03_floor.py' -v
+Eight static/fidelity tests passed in the ChatGPT build fixture; full repository tests remain for local preflight.
