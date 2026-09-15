@@ -77,7 +77,7 @@ The unchanged TIAI controller/runtime fixtures remain subject to the repository'
 Run:
 
 ```bash
-.venv/bin/python scripts/run_v03_hpcp_pair.py --preflight
+.venv/bin/python scripts/run_hpcp_vs_tiai_v03.py --preflight
 ```
 
 in the existing local experiment environment. This verifies the full repository hashes, pinned upstream checkout, Docker image, complete local TIAI tests, actual ordinary/TIAI tool schemas, model construction, and both task shapes without a provider call.
